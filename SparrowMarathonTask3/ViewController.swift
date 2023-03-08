@@ -52,10 +52,10 @@ class ViewController: UIViewController {
     }
 
     @objc func animate() {
-        UIView.animate(withDuration: 0.3, delay: 0, options: [], animations: { [self] in
+        UIView.animate(withDuration: 0.3, delay: 0, options: [.curveLinear], animations: { [self] in
             let first = CGAffineTransform(rotationAngle: (.pi / 2) * CGFloat(slider.value))
             let second = CGAffineTransform(scaleX: 1 + CGFloat(slider.value / 2), y: 1 + CGFloat(slider.value / 2))
-            let third = CGAffineTransform(translationX: originViewSize.minX + (CGFloat(slider.value) * (self.view.frame.width - self.gradientView.frame.width - 16))  , y: originViewSize.minY + CGFloat((slider.value * 25)) )
+            let third = CGAffineTransform(translationX: originViewSize.minX + (CGFloat(slider.value) * ((view.frame.width - 8) - gradientView.frame.width)), y: originViewSize.minY + CGFloat(CGFloat(slider.value) * ((gradientView.frame.width - originViewSize.width) / 2)))
             gradientView.transform = CGAffineTransformConcat(CGAffineTransformConcat(second, first), third )
         })
     }
